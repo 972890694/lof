@@ -19,7 +19,7 @@ const update = () => {
     const historyData = JSON.parse(fs.readFileSync(historyPath));
     const historyDate = historyData.map(e => e.date);
     // 包含代表更新过了
-    if (historyDate.includes(temp.date) || temp.date === todayDate) {
+    if (historyDate.includes(temp.date)) {
       reject('已经更新过上一次净值了，请明天再试~');
       return;
     }
@@ -96,6 +96,8 @@ const update = () => {
 
         fs.writeFileSync(dataTempPath, JSON.stringify(resetTemp()));
         resolve();
+      } else {
+        reject(`${temp.date} 净值还未更新`)
       }
     });
   })
