@@ -13,7 +13,6 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.11",
-    "express": "^4.18.1",
     "moment": "^2.29.3",
     "node-schedule": "^2.1.0",
     "superagent": "^7.1.6"
