@@ -66,7 +66,7 @@ const update = () => {
 
     // 重置temp的 isupdate, 以及当天时间
     function resetTemp() {
-      temp.date = todayDate;
+      temp.date = temp.date === todayDate ? moment(todayDate).add({ days: 1 }).format('YYYY-MM-DD') : todayDate;
       temp.todayEarnings = 0;
       temp.data.forEach(item => {
         // 重置更新
