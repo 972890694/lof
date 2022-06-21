@@ -3,10 +3,10 @@
   "data": [
     {
       "code": "005505",
-      "basePrice": 2147.46,
+      "basePrice": 2179.02,
       "name": "前海开源中药股票A",
       "isUpdate": false,
-      "isHold": true,
+      "isHold": false,
       "estimateRate": 0,
       "realRate": 0,
       "realPrice": 0,
@@ -14,7 +14,7 @@
     },
     {
       "code": "400015",
-      "basePrice": 1794.85,
+      "basePrice": 1820.51,
       "name": "东方新能源汽车混合",
       "isUpdate": false,
       "isHold": true,
@@ -25,7 +25,7 @@
     },
     {
       "code": "005669",
-      "basePrice": 1956.19,
+      "basePrice": 2004.31,
       "name": "前海开源公用事业股票",
       "isUpdate": false,
       "isHold": true,
@@ -36,7 +36,7 @@
     },
     {
       "code": "011103",
-      "basePrice": 8714.4,
+      "basePrice": 8816.35,
       "name": "天弘中证光伏产业指数C",
       "isUpdate": false,
       "isHold": true,
@@ -47,7 +47,7 @@
     },
     {
       "code": "161725",
-      "basePrice": 11441.37,
+      "basePrice": 11673.62,
       "name": "招商中证白酒指数(LOF)A",
       "isUpdate": false,
       "isHold": true,
@@ -58,7 +58,7 @@
     },
     {
       "code": "003096",
-      "basePrice": 7062.61,
+      "basePrice": 7131.11,
       "name": "中欧医疗健康混合C",
       "isUpdate": false,
       "isHold": true,
@@ -69,7 +69,7 @@
     },
     {
       "code": "000339",
-      "basePrice": 4277.65,
+      "basePrice": 4315.29,
       "name": "长城医疗保健混合A",
       "isUpdate": false,
       "isHold": true,
@@ -80,7 +80,7 @@
     },
     {
       "code": "011035",
-      "basePrice": 10422.36,
+      "basePrice": 10459.88,
       "name": "嘉实中证稀土产业ETF联接A",
       "isUpdate": false,
       "isHold": true,
@@ -91,7 +91,7 @@
     },
     {
       "code": "005609",
-      "basePrice": 1162.39,
+      "basePrice": 1177.15,
       "name": "富国军工主题混合A",
       "isUpdate": false,
       "isHold": true,
@@ -102,7 +102,7 @@
     },
     {
       "code": "320007",
-      "basePrice": 10002.77,
+      "basePrice": 10198.82,
       "name": "诺安成长混合",
       "isUpdate": false,
       "isHold": true,
@@ -113,7 +113,7 @@
     },
     {
       "code": "519674",
-      "basePrice": 6313.32,
+      "basePrice": 6344.88,
       "name": "银河创新成长混合A",
       "isUpdate": false,
       "isHold": true,
