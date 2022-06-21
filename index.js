@@ -16,9 +16,12 @@ const rate = 100;
 function getEstimatePrice(item) {
   return axios.get(`${baseUrl}/${item.code}.js?rt=${moment().valueOf()}`)
     .then(res => {
-      let str = res.data.replace('jsonpgz(', '');
-      str = str.replace(');', '');
-      const { gszzl } = JSON.parse(str);
+      // let str = res.data.replace('jsonpgz(', '');
+      // str = str.replace(');', '');
+      // const { gszzl } = JSON.parse(str);
+      const fn = new Function('jsonpgz', `return ${res.data}`);
+      const data = fn((data) => data);
+      const { gszzl } = data;
       item.estimateRate = gszzl;
       const curEstimatePrice = parseInt((item.estimateRate / rate * item.basePrice) * 100) / 100;
       allEstimatePrice = parseInt((allEstimatePrice + curEstimatePrice) * 100) / 100;
