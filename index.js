@@ -5,13 +5,10 @@ const moment = require('moment');
 const baseUrl = 'http://fundgz.1234567.com.cn/js';
 const dataTempPath = `${__dirname}/dataTemp.json`;
 
-const temp = JSON.parse(fs.readFileSync(dataTempPath));
-const data = temp.data.filter(e => e.isHold);
-
-// 估值总收益
-let allEstimatePrice = 0;
 const rate = 100;
 function getAll() {
+  const temp = JSON.parse(fs.readFileSync(dataTempPath));
+  const data = temp.data.filter(e => e.isHold);
   // 请求天天基金网获取估值
   function getEstimatePrice(item) {
     return axios.get(`${baseUrl}/${item.code}.js?rt=${moment().valueOf()}`)
@@ -25,7 +22,6 @@ function getAll() {
         item.estimateRate = gszzl;
         item.updateTime = gztime;
         const curEstimatePrice = parseInt((item.estimateRate / rate * item.basePrice) * 100) / 100;
-        allEstimatePrice = parseInt((allEstimatePrice + curEstimatePrice) * 100) / 100;
         item.estimatePrice = curEstimatePrice;
         return Promise.resolve(item);
       })
