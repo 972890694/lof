@@ -4,10 +4,8 @@ const app = express();
 const port = 3001;
 
 app.get('/getEstimatePrice', (req, res) => {
-  // console.log(data);
   Promise.all(getAll()).then(result => {
     const total = result.reduce((prv, cur) => parseInt(cur.estimatePrice * 100) / 100 + prv, 0);
-    console.log(total);
     res.send({
       code: 0,
       data: {
