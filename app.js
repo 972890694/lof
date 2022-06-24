@@ -1,7 +1,11 @@
 const express = require('express');
 const { getAll } = require('./index');
+const fs = require('fs');
+
 const app = express();
 const port = 3001;
+
+const historyPath = `${__dirname}/history.json`;
 
 app.get('/getEstimatePrice', (req, res) => {
   Promise.all(getAll()).then(result => {
@@ -15,6 +19,14 @@ app.get('/getEstimatePrice', (req, res) => {
       message: '',
     })
   })
+})
+
+app.get('/getHistory', (req, res) => {
+  res.send({
+    code: 0,
+    data: fs.readFileSync(historyPath),
+    message: '',
+  });
 })
 
 app.listen(port, () => {
