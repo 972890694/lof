@@ -5,7 +5,7 @@ const port = 3001;
 
 app.get('/getEstimatePrice', (req, res) => {
   Promise.all(getAll()).then(result => {
-    const total = result.reduce((prv, cur) => parseInt(cur.estimatePrice * 100) / 100 + prv, 0);
+    const total = result.reduce((prv, cur) => parseInt((cur.estimatePrice + prv) * 100) / 100, 0);
     res.send({
       code: 0,
       data: {
