@@ -1,11 +1,11 @@
 const express = require('express');
-const { axiosList } = require('./index');
+const { getAll } = require('./index');
 const app = express();
 const port = 3001;
 
 app.get('/getEstimatePrice', (req, res) => {
   // console.log(data);
-  Promise.all(axiosList).then(result => {
+  Promise.all(getAll()).then(result => {
     res.send({
       code: 0,
       data: result,

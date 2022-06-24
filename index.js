@@ -11,32 +11,35 @@ const data = temp.data.filter(e => e.isHold);
 // 估值总收益
 let allEstimatePrice = 0;
 const rate = 100;
+function getAll() {
+  // 请求天天基金网获取估值
+  function getEstimatePrice(item) {
+    return axios.get(`${baseUrl}/${item.code}.js?rt=${moment().valueOf()}`)
+      .then(res => {
+        // let str = res.data.replace('jsonpgz(', '');
+        // str = str.replace(');', '');
+        // const { gszzl } = JSON.parse(str);
+        const fn = new Function('jsonpgz', `return ${res.data}`);
+        const data = fn((data) => data);
+        const { gszzl, gztime } = data;
+        item.estimateRate = gszzl;
+        item.updateTime = gztime;
+        const curEstimatePrice = parseInt((item.estimateRate / rate * item.basePrice) * 100) / 100;
+        allEstimatePrice = parseInt((allEstimatePrice + curEstimatePrice) * 100) / 100;
+        item.estimatePrice = curEstimatePrice;
+        return Promise.resolve(item);
+      })
+  }
 
-// 请求天天基金网获取估值
-function getEstimatePrice(item) {
-  return axios.get(`${baseUrl}/${item.code}.js?rt=${moment().valueOf()}`)
-    .then(res => {
-      // let str = res.data.replace('jsonpgz(', '');
-      // str = str.replace(');', '');
-      // const { gszzl } = JSON.parse(str);
-      const fn = new Function('jsonpgz', `return ${res.data}`);
-      const data = fn((data) => data);
-      const { gszzl, gztime } = data;
-      item.estimateRate = gszzl;
-      item.updateTime = gztime;
-      const curEstimatePrice = parseInt((item.estimateRate / rate * item.basePrice) * 100) / 100;
-      allEstimatePrice = parseInt((allEstimatePrice + curEstimatePrice) * 100) / 100;
-      item.estimatePrice = curEstimatePrice;
-      return Promise.resolve(item);
-    })
+  const axiosList = [];
+  // 循环天天基金发请求
+  data.forEach((item) => {
+    axiosList.push(getEstimatePrice(item));
+  });
+
+  return axiosList;
+
 }
-
-const axiosList = [];
-// 循环天天基金发请求
-data.forEach((item) => {
-  axiosList.push(getEstimatePrice(item));
-});
-
 // Promise.all(axiosList).then(() => {
 //   data.forEach((item) => {
 //     console.log(`rate: ${item.estimateRate}, 估值：${item.estimatePrice}, ${item.name}, basePrice: ${item.basePrice}`);
@@ -46,4 +49,4 @@ data.forEach((item) => {
 //   console.log(`${moment().format('YYYY-MM-DD HH:mm:ss')}估值收益：${(allEstimatePrice)}元 `);
 // })
 
-exports.axiosList = axiosList;
+exports.getAll = getAll;
