@@ -22,9 +22,10 @@ app.get('/getEstimatePrice', (req, res) => {
 })
 
 app.get('/getHistory', (req, res) => {
+  const list = JSON.parse(fs.readFileSync(historyPath));
   res.send({
     code: 0,
-    data: fs.readFileSync(historyPath),
+    data: list.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
     message: '',
   });
 })

@@ -48,7 +48,7 @@ const update = () => {
               const dateText = $('.dataItem02 dt p').text();
 
               if (dateText.includes(temp.date)) {
-                item.realRate = $('.dataItem02 .dataNums .ui-font-middle').text().split('%')[0];
+                item.realRate = $('.dataItem02 .dataNums .ui-font-middle').text().split('%')[0] * 100 / 100;
                 const curRealPrice = parseInt((item.realRate / rate * item.basePrice) * 100) / 100;
                 // 计算净值
                 allRealPrice = parseInt((allRealPrice + curRealPrice) * 100) / 100;
